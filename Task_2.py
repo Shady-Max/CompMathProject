@@ -1,3 +1,7 @@
+a = None
+b = None
+tol = None
+
 def task2(a, b, tol):
     def bisection_method(f, a, b, tol):
         if f(a) * f(b) >= 0:
