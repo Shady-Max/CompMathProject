@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-
 a = None
 b = None
 tol = None
