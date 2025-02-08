@@ -1,72 +1,50 @@
-import math
+def task2(a, b, tol):
+    def bisection_method(f, a, b, tol):
+        if f(a) * f(b) >= 0:
+            print("Invalid interval! f(a) and f(b) must have opposite signs.")
+        return None, 0, None  # Return None for failure
 
-# Function definition
-def f(x):
-    return x**3 - x - 2
+    iterations = 0
+    midpoint = (a + b) / 2
+    prev_midpoint = a  # Used for relative error calculation
 
-# Bisection Method
-def bisection_method(a, b, tol):
-    if f(a) * f(b) >= 0:
-        print("Bisection method cannot proceed. f(a) and f(b) must have opposite signs.")
-        return None, None
-    
-    iter_count = 0
-    c_old = a  # Initial value for error calculation
-
-    while (b - a) / 2 > tol:
-        c = (a + b) / 2
-        iter_count += 1
-
-        if f(c) == 0:
-            break  # Found exact root
-
-        if f(a) * f(c) < 0:
-            b = c
+    while abs(f(midpoint)) > tol:
+        iterations += 1
+        if f(a) * f(midpoint) < 0:
+            b = midpoint
         else:
-            a = c
-
-        # Relative error calculation
-        rel_error = abs((c - c_old) / c)
-        c_old = c
-    
-    return c, iter_count
-
-# Secant Method
-def secant_method(x0, x1, tol):
-    iter_count = 0
-    x_old = x0  # Initial value for error calculation
-
-    while abs(x1 - x0) > tol:
-        if f(x1) - f(x0) == 0:
-            print("Division by zero detected in Secant Method.")
-            return None, None
+            a = midpoint
         
-        x_new = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
-        iter_count += 1
+        prev_midpoint, midpoint = midpoint, (a + b) / 2
 
         # Relative error calculation
-        rel_error = abs((x_new - x_old) / x_new)
-        x_old = x_new
+        rel_error = abs((midpoint - prev_midpoint) / midpoint) if midpoint != 0 else None
 
-        if abs(f(x_new)) < tol:
-            break
+        return midpoint, iterations, rel_error
 
-        x0, x1 = x1, x_new
+    def secant_method(f, x0, x1, tol):
+        """Finds the root of f(x) using the Secant Method starting from x0 and x1."""
+        iterations = 0
+        prev_x = x0  # Used for relative error calculation
 
-    return x_new, iter_count
+        while abs(f(x1)) > tol:
+            iterations += 1
+            x_temp = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))  # Secant formula
+            x0, x1 = x1, x_temp
 
-# User input for interval and tolerance
-a = float(input("Enter the starting value of the interval (a): "))
-b = float(input("Enter the ending value of the interval (b): "))
-tolerance = float(input("Enter the tolerance level: "))
+        # Relative error calculation
+        rel_error = abs((x1 - prev_x) / x1) if x1 != 0 else None
+        prev_x = x1
 
-# Run methods and display results
-root_bisection, iters_bisection = bisection_method(a, b, tolerance)
-root_secant, iters_secant = secant_method(a, b, tolerance)
+        return x1, iterations, rel_error
 
-print("\nResults:")
-if root_bisection is not None:
-    print(f"Bisection Method: Root ≈ {root_bisection}, Iterations = {iters_bisection}")
+    def f(x):
+        return x**3 - x - 2
 
-if root_secant is not None:
-    print(f"Secant Method: Root ≈ {root_secant}, Iterations = {iters_secant}")
+    # Running Bisection Method
+    root_bisection, iter_bisection, error_bisection = bisection_method(f, a, b, tol)
+    print(f"\nBisection Method:\n  Root ≈ {root_bisection:.6f}\n  Iterations: {iter_bisection}\n  Relative Error: {error_bisection:.6f}")
+
+    # Running Secant Method
+    root_secant, iter_secant, error_secant = secant_method(f, a, b, tol)
+    print(f"\nSecant Method:\n  Root ≈ {root_secant:.6f}\n  Iterations: {iter_secant}\n  Relative Error: {error_secant:.6f}")
