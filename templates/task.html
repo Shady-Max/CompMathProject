@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}task{% endblock %}
+
+{% block content %}
+    
+    {% block task %}{% endblock %}
+
+    {% if output %}
+    <div>
+        <h2>Output:</h2>
+        {% for value in output %}
+        <div>
+            <p>{{value[0]}}: <span id="{{value[2]}}">{{value[1]}}</span></p>
+        </div>
+        
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if graph %}
+    <div>
+        <h2>Graph:</h2>
+        <div id="graph"></div>
+        <script>
+            var graphJSON = {{ graph | safe }};
+            Plotly.newPlot('graph', graphJSON);
+        </script>
+    </div>
+    {% endif %}
+{% endblock %}

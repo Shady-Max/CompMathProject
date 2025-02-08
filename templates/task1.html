@@ -1,0 +1,44 @@
+{% extends 'task.html' %}
+
+{% block title %}{% endblock %}
+
+{% block task %}
+    <h2>Task 1: Graphical Method and Absolute Error</h2>
+    <form method="POST">
+        <div>
+            <span>Enter left border of the interval:</span>
+            <input type="text" value="{{left_interval|default(0,true)}}" name="left_interval" placeholder="Enter left border" required>
+        </div>
+        <div>
+            <span>Enter right border of the interval:</span>
+            <input type="text" value="{{right_interval|default(2,true)}}" name="right_interval" placeholder="Enter right border" required>
+        </div>
+        <div>
+            <span>Enter the number of points to plot:</span>
+            <input type="number" value="{{points|default(500, true)}}" name="points" placeholder="Enter the number of points to plot(more=smoother)" required>
+        </div>
+        <input type="submit" value="Calculate and Plot">
+    </form>
+    <form method="GET" id="error_calc_form">
+        <div>
+            <span>Enter the approximate root:</span>
+            <input type="text" value="{{approx_root|default(2, true)}}" name="approx_root" placeholder="Enter approximate root" required>
+        </div>
+        <script>
+            function fetchData() {
+                const form = document.getElementById("error_calc_form");
+                const formData = new FormData(form);
+                fetch('/task/1/error_calc', {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById(data["Absolute error"][1]).innerText = data["Absolute error"][0];
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        </script>
+        <button type="button" onclick="fetchData()">Calculate error</button>
+    </form>
+{% endblock %}
