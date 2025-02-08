@@ -41,4 +41,15 @@
         </script>
         <button type="button" onclick="fetchData()">Calculate error</button>
     </form>
+    {% if output %}
+    <div>
+        <h2>Output:</h2>
+        {% for value in output %}
+        <div>
+            <p>{{value[0]}}: <span id="{{value[2]}}">{{value[1]}}</span></p>
+        </div>
+        
+        {% endfor %}
+    </div>
+    {% endif %}
 {% endblock %}

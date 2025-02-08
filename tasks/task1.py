@@ -7,6 +7,12 @@ a=None
 b=None
 points=None
 
+def init(A, B, Points):
+    global a, b, points
+    a = A
+    b = B
+    points = Points
+
 def f(x):
     return np.e - x - x**2
 

@@ -4,7 +4,39 @@
 
 {% block task %}
     <h2>Task 2: Comparison of Root-Finding Methods</h2>
-    <form method="POST" action="">
-        
+    <form method="POST">
+        <div>
+            <span>Enter left border of the interval:</span>
+            <input type="text" value="{{left_interval|default(1,true)}}" name="left_interval" placeholder="Enter left border" required>
+        </div>
+        <div>
+            <span>Enter right border of the interval:</span>
+            <input type="text" value="{{right_interval|default(2,true)}}" name="right_interval" placeholder="Enter right border" required>
+        </div>
+        <div>
+            <span>Enter tol:</span>
+            <input type="text" value="{{tol|default(1e-6,true)}}" name="tol" placeholder="Enter tol" required>
+        </div>
+        <button>Calculate</button>
     </form>
+    {% if BisectionMethod %}
+    <div>
+        <h2>Bisection Method Output:</h2>
+        <div>
+            <p>Root: <span>{{BisectionMethod.Root}}</span></p>
+            <p>Iterations: <span>{{BisectionMethod.Iterations}}</span></p>
+            <p>Relative Error: <span>{{BisectionMethod.RelativeError}}</span></p>
+        </div>
+    </div>
+    {% endif %}
+    {% if SecantMethod %}
+    <div>
+        <h2>Secant Method Output:</h2>
+        <div>
+            <p>Root: <span>{{SecantMethod.Root}}</span></p>
+            <p>Iterations: <span>{{SecantMethod.Iterations}}</span></p>
+            <p>Relative Error: <span>{{SecantMethod.RelativeError}}</span></p>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}

@@ -31,6 +31,7 @@ def post():
     session["task1:right_interval"] = right_interval
     session["task1:points"] = number_of_points
 
+    tasks.task1.init(left_interval, right_interval, number_of_points)
     tasks.task1.a = left_interval
     tasks.task1.b = right_interval
     tasks.task1.points = number_of_points
