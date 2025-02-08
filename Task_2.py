@@ -8,16 +8,16 @@ def task2(a, b, tol):
             print("Invalid interval! f(a) and f(b) must have opposite signs.")
         return None, 0, None  # Return None for failure
 
-    iterations = 0
-    midpoint = (a + b) / 2
-    prev_midpoint = a  # Used for relative error calculation
+        iterations = 0
+        midpoint = (a + b) / 2
+        prev_midpoint = a  # Used for relative error calculation
 
-    while abs(f(midpoint)) > tol:
-        iterations += 1
-        if f(a) * f(midpoint) < 0:
-            b = midpoint
-        else:
-            a = midpoint
+        while abs(f(midpoint)) > tol:
+            iterations += 1
+            if f(a) * f(midpoint) < 0:
+                b = midpoint
+            else:
+                a = midpoint
         
         prev_midpoint, midpoint = midpoint, (a + b) / 2
 
