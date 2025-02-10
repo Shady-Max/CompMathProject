@@ -1,6 +1,6 @@
 import numpy as np
 
-def task3(max_iter, tol):
+def task3(max_iter, tol, A, b):
     def gauss_seidel(A, b, x0, tol, max_iter):
         n = len(b)
         x = np.array(x0, dtype=float)  # Convert initial guess to a NumPy array
