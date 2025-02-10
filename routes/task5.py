@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, jsonify
-import tasks.task5
+import solution.task5
 
 task5_bp = Blueprint("task5", __name__)
 

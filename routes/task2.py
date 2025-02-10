@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, jsonify
-import tasks.task2
+import solution.task2
 
 task2_bp = Blueprint("task2", __name__)
 
@@ -23,8 +23,8 @@ def post():
     session["left_interval"] = left_interval
     session["right_interval"] = right_interval
     session["tol"] = tol
-    tasks.task2.init(left_interval, right_interval, tol)
-    result = tasks.task2.solution()
+    solution.task2.init(left_interval, right_interval, tol)
+    result = solution.task2.solution()
     context = {
         "left_interval": left_interval,
         "right_interval": right_interval,

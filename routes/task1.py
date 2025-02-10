@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, jsonify
-import tasks.task1
+import solution.task1
 
 task1_bp = Blueprint("task1", __name__)
 
@@ -31,11 +31,11 @@ def post():
     session["task1:right_interval"] = right_interval
     session["task1:points"] = number_of_points
 
-    tasks.task1.init(left_interval, right_interval, number_of_points)
-    tasks.task1.a = left_interval
-    tasks.task1.b = right_interval
-    tasks.task1.points = number_of_points
-    graph_json = tasks.task1.solution()
+    solution.task1.init(left_interval, right_interval, number_of_points)
+    solution.task1.a = left_interval
+    solution.task1.b = right_interval
+    solution.task1.points = number_of_points
+    graph_json = solution.task1.solution()
     context = {
         "left_interval": left_interval,
         "right_interval": right_interval,
@@ -52,5 +52,5 @@ def post():
 def error_calculation():
     approx_root = float(request.form.get("approx_root"))
     session["task1:approx_root"] = approx_root
-    absolute_error = tasks.task1.task1_calculate_error(approx_root)
+    absolute_error = solution.task1.task1_calculate_error(approx_root)
     return jsonify({"Absolute error": (absolute_error, "absolute_error")})

@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import routes
-import config
-import tasks.task1
 
 app = Flask(__name__)
 app.config.from_object("config")

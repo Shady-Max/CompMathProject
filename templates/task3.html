@@ -4,7 +4,48 @@
 
 {% block task %}
     <h2>Task 3: Gauss-Seidel Method</h2>
-    <form method="POST" action="">
-        
+    <form method="POST">
+        <h3>Matrix A:</h3>
+        <table>
+            {% for i in range(3) %}
+            <tr>
+                {% for j in range(3) %}
+                <td>
+                    <input type="text" name="matrix_{{ i }}_{{ j }}" value="{{A[i][j]}}" required>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Vector b:</h3>
+        <table>
+            {% for i in range(3) %}
+            <tr>
+                <td>
+                    <input type="text" name="vector_{{ i }}" value="{{b[i]}}" required>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div>
+            <span>Enter max number of iterations:</span>
+            <input type="number" name="iter" value="{{iter}}" required>
+        </div>
+        <div>
+            <span>Enter tol:</span>
+            <input type="text", name="tol", value="{{tol}}" required>
+        </div>
+        <br>
+        <button type="submit">Submit</button>
     </form>
+    {% if output is defined %}
+    <div>
+        <h2>Solution:</h2>
+        <div>
+            <p>x = <span>{{output[0]}}</span></p>
+            <p>y = <span>{{output[1]}}</span></p>
+            <p>z = <span>{{output[2]}}</span></p>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
