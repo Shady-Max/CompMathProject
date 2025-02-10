@@ -4,7 +4,37 @@
 
 {% block task %}
     <h2>Task 7: Second Derivative Using Newton's Forward Difference Formula</h2>
-    <form method="POST" action="">
-        
+    <form method="POST" action="{{ url_for('task7.points_post') }}">
+        <div>
+            <span>Enter number of points:</span>
+            <input type="number" name="points" value="{{points}}" required>
+        </div>
+        <button>Submit</button>
     </form>
+    <form method="POST" action="{{ url_for('task7.post') }}">
+        <table>
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>X</th>
+                    <th>Y</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                {% for i in range(points) %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td><input type="text" name="x_{{i}}" value="{{x[i]|default(0)}}" required></td>
+                    <td><input type="text" name="y_{{i}}" value="{{y[i]|default(0)}}" required></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button>Calculate</button>
+    </form>
+    {% if output %}
+        <h2>Output</h2>
+        <p>{{output}}</p>
+    {% endif %}
 {% endblock %}
