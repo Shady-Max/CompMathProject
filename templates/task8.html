@@ -4,7 +4,23 @@
 
 {% block task %}
     <h2>Task 8: Simpson's Rule</h2>
-    <form method="POST" action="">
-        
+    <form method="POST">
+        <div>
+            <span>Enter lower bound of intergration:</span>
+            <input type="text" name="a" value="{{a}}" required>
+        </div>
+        <div>
+            <span>Enter upper bound of intergration:</span>
+            <input type="text" name="b" value="{{b}}" required>
+        </div>
+        <div>
+            <span>Enter number of subintervals:</span>
+            <input type="text" name="n" value="{{n}}" required>
+        </div>
+        <button>Calculate</button>
     </form>
+    {% if output %}
+        <h2>Output</h2>
+        <p>Approximate integral of sin(x) from {{a}} to {{b}}: {{output}}</p>
+    {% endif %}
 {% endblock %}
