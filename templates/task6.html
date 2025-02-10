@@ -4,7 +4,41 @@
 
 {% block task %}
     <h2>Task 6: Lagrange's Interpolation Formula</h2>
-    <form method="POST" action="">
-        
+    <form method="POST" action="{{ url_for('task6.points_post') }}">
+        <div>
+            <span>Enter number of points:</span>
+            <input type="number" name="points" value="{{points}}" required>
+        </div>
+        <button>Submit</button>
     </form>
+    <form method="POST" action="{{ url_for('task6.post') }}">
+        <table>
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>X</th>
+                    <th>Y</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                {% for i in range(points) %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td><input type="text" name="x_{{i}}" value="{{x[i]|default(0)}}" required></td>
+                    <td><input type="text" name="y_{{i}}" value="{{y[i]|default(0)}}" required></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <span>Enter x value at which interpolation is performed:</span>
+            <input type="text" name="x_target" value="{{x_target}}" required>
+        </div>
+        <button>Calculate and Plot Graph</button>
+    </form>
+    {% if output %}
+        <h2>Output</h2>
+        <p>{{output}}</p>
+    {% endif %}
 {% endblock %}
