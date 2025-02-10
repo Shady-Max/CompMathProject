@@ -4,7 +4,48 @@
 
 {% block task %}
     <h2>Task 4: LU Factorization</h2>
-    <form method="POST" action="">
-        
+    <form method="POST">
+        <h3>Matrix A:</h3>
+        <table>
+            {% for i in range(3) %}
+            <tr>
+                {% for j in range(3) %}
+                <td>
+                    <input type="text" name="matrix_{{ i }}_{{ j }}" value="{{A[i][j]}}" required>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <button type="submit">Submit</button>
     </form>
+    {% if L is defined %}
+    <div>
+        <h2>L matrix:</h2>
+        <table>
+            {% for i in range(3) %}
+            <tr>
+                {% for j in range(3) %}
+                <td>{{L[i][j]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+    {% if U is defined %}
+    <div>
+        <h2>U matrix:</h2>
+        <table>
+            {% for i in range(3) %}
+            <tr>
+                {% for j in range(3) %}
+                <td>{{U[i][j]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
 {% endblock %}
