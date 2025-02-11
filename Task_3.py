@@ -4,12 +4,12 @@ def task3(tol, max_iter):
     def gauss_seidel(A, b, x0, tol, max_iter):
         n = len(b)
         x = np.array(x0, dtype=float)  # Convert initial guess to a NumPy array
+        for i in range(n):
+            if A[i][i] == 0:
+                print("There is no possible solutions")
     
         for _ in range(max_iter):
             x_new = np.copy(x)
-            if A[i][i] == 0:
-                print("There is no solution for this matryx")
-                return None
         
             for i in range(n):
                 sum1 = sum(A[i][j] * x_new[j] for j in range(n) if j != i)
