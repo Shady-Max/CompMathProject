@@ -35,6 +35,16 @@
             <span>Enter tol:</span>
             <input type="text", name="tol", value="{{tol}}" required>
         </div>
+        <div>
+            <span>Enter initial guess:</span>
+            <table>
+                <td>
+                    {% for i in range(3) %}
+                    <tr><input type="text" name="guess_{{i}}" value="{{guess[i]}}" required></tr>
+                    {% endfor %}
+                </td>
+            </table>
+        </div>
         <br>
         <button type="submit">Submit</button>
     </form>
@@ -42,9 +52,13 @@
     <div>
         <h2>Solution:</h2>
         <div>
+            {% if output is string %}
+            <p>{{output}}</p>
+            {% else %}
             <p>x = <span>{{output[0]}}</span></p>
             <p>y = <span>{{output[1]}}</span></p>
             <p>z = <span>{{output[2]}}</span></p>
+            {% endif %}
         </div>
     </div>
     {% endif %}
