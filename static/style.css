@@ -125,3 +125,19 @@ table th {
       text-align: left;
   }
 }
+
+input[type="submit"] {
+  background: #007bff; /* Match the "Calculate error" button */
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%; /* Ensure consistent width */
+}
+
+input[type="submit"]:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
