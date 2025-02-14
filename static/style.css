@@ -6,6 +6,7 @@
 }
 
 body {
+  margin-top: 50px;
   background-color: #f4f4f9;
   color: #333;
   display: flex;
@@ -140,4 +141,29 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background: #0056b3; /* Darker blue on hover */
+}
+
+nav {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  background: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  background: #0056b3;
+  border-radius: 5px;
 }
